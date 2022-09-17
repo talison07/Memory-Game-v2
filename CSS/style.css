@@ -1,0 +1,103 @@
+html, body{
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    font-family: "Righteous", sans-serif;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.card {
+    width: 150px;
+    height: 150px;
+    position: relative;
+
+    transform-style: preserve-3d;
+    transition: transform 1000ms;
+    cursor: pointer;
+}
+
+.cardFront, .cardBack{
+    width: 100%;
+    height: 100%;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    backface-visibility: hidden;
+    
+    
+}
+
+.cardFront {
+    background-color: #101c2c;
+    transform: rotateY(180deg);
+}
+
+.cardBack {
+    background-color: #05c3ff;
+    font-size: 30px;
+}
+
+.flip{
+    transform: rotateY(180deg);
+
+}
+
+.winScreen{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    background-color: #222b;
+    color: #fff;
+    text-shadow: 4px 2px 0px  #00a3ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    display: none;
+    opacity: 0%;
+    transition: all 500ms;
+}
+
+#winMessage{
+    margin-bottom: 10px;
+}
+
+.winScreen button{
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: #00a3ff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
+
+
+    transition: all 500ms;
+}
+
+.winScreen button:hover{
+    background-color: #1b304b;
+}
+
+.board{
+    max-width: 700px;
+    display: grid;
+    grid-template: repeat(5, 1fr)/ repeat(4, 1fr);
+}
