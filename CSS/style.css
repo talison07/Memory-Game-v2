@@ -10,6 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #0c1014;
 }
 
 *{
@@ -38,13 +39,14 @@ body {
     align-items: center;
 
     backface-visibility: hidden;
-    
-    
 }
-
 .cardFront {
     background-color: #101c2c;
     transform: rotateY(180deg);
+}
+
+.cardFront img{
+    transition: all 500ms;
 }
 
 .cardBack {
@@ -55,6 +57,61 @@ body {
 .flip{
     transform: rotateY(180deg);
 
+}
+
+.match{
+    filter: saturate(10%)
+}
+
+.loginScreen{
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 500ms;
+}
+
+.loginScreen h1{
+    margin-bottom: 20px;
+}
+
+.loginScreen img{
+    width: 200px;
+}
+
+.loginScreen button{
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: #b86659;
+    cursor: pointer;
+
+    font-family: "Press Start 2P";
+    color:#fff;
+
+    transition: all 700ms;
+
+}
+
+.loginScreen button:hover{
+    background-color: #925146;
+}
+
+.loginScreen input{
+    width: 250px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1.2px solid #000;
+    margin-bottom: 20px;
+
+    text-align: center;
 }
 
 .winScreen{
@@ -70,14 +127,13 @@ body {
     flex-direction: column;
     position: absolute;
 
-    display: none;
-    opacity: 0%;
     transition: all 500ms;
 }
 
 #winMessage{
     margin-bottom: 10px;
 }
+
 
 .winScreen button{
     width: 250px;
@@ -97,9 +153,28 @@ body {
     background-color: #1b304b;
 }
 
+.appear{
+    transform: translateY(0px);
+}
+
+.disappear{
+    transform: translateY(-1000px);
+}
+
 .board{
     max-width: 700px;
     display: grid;
     grid-template: repeat(5, 1fr)/ repeat(4, 1fr);
     gap: 20px;
+}
+
+@media screen and (max-height:890px){
+    .card{
+        width: 100px;
+        height:100px
+    }
+
+    .cardBack{
+        font-size: 25px;
+    }
 }
