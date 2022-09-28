@@ -88,7 +88,7 @@ body {
     width: 200px;
 }
 
-.loginScreen button{
+#play{
     width: 200px;
     height: 50px;
     border-radius: 10px;
@@ -103,11 +103,11 @@ body {
 
 }
 
-.loginScreen button:hover{
+#play:hover{
     background-color: #925146;
 }
 
-.loginScreen input{
+#inputPlayer{
     width: 250px;
     height: 40px;
     border-radius: 10px;
@@ -196,10 +196,5 @@ body {
     .cardBack{
         font-size:15px;
     }
-
-    
-    /* #winMessage{
-        font-size: 1rem;
-    } */
 
 }
