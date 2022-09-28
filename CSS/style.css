@@ -11,6 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #0c1014;
+    overflow: hidden;
 }
 
 *{
@@ -153,12 +154,9 @@ body {
     background-color: #1b304b;
 }
 
-.appear{
-    transform: translateY(0px);
-}
 
 .disappear{
-    transform: translateY(-1000px);
+    transform: translateY(-1500px);
 }
 
 .board{
@@ -177,4 +175,24 @@ body {
     .cardBack{
         font-size: 25px;
     }
+}
+
+@media screen and (max-width:500px){
+    .card{
+        width: 70px;
+        height: 70px;
+    }
+
+    .cardBack, .cardFront{
+        border-radius: 15px;
+    }
+
+    .cardFront img{
+        width: 50px;
+    }
+
+    .cardBack{
+        font-size:15px;
+    }
+
 }
