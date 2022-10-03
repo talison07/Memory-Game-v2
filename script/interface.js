@@ -5,9 +5,9 @@ function flip(card) {
     if (game.secondCard) {
 
         if (game.checkMatch()) {
-            if(game.cards.every((card)=>card.flipped === true)){
+            if (game.cards.every((card) => card.flipped === true)) {
                 win();
-               }
+            }
 
             let firstCard = document.getElementById(game.firstCard.id).children[0];
             let secondCard = document.getElementById(game.secondCard.id).children[0];
@@ -17,25 +17,63 @@ function flip(card) {
 
             game.continueGame();
 
-        } 
+        }
         else {
-            
 
-          setTimeout ( ()=>{ 
-            let firstCard = document.getElementById(game.firstCard.id);
-            let secondCard = document.getElementById(game.secondCard.id);
 
-             firstCard.classList.remove("flip");
-             secondCard.classList.remove("flip");
-            game.unflipCards()
-        }, 700)}
+            setTimeout(() => {
+                let firstCard = document.getElementById(game.firstCard.id);
+                let secondCard = document.getElementById(game.secondCard.id);
+
+                firstCard.classList.remove("flip");
+                secondCard.classList.remove("flip");
+                game.unflipCards()
+            }, 700)
+        }
     }
 
 
 }
 
+function chronometer() {
+    let minutes = document.getElementById("minutes");
+    let seconds = document.getElementById("seconds");
+    let milliseconds = document.getElementById("milliseconds");
 
+    let mm = 0;
+    let s = 0;
+    let m = 0;
 
+    let timeInterval = setInterval(() => {
+        milliseconds.innerHTML++
+
+        if (milliseconds.innerHTML == 99) {
+            mm = 0;
+            timeFormat(milliseconds, mm)
+            s++;
+            timeFormat(seconds, s)
+
+        }
+
+        if (seconds.innerHTML == 59) {
+            s = 0;
+            timeFormat(seconds, s);
+            m++;
+            timeFormat(minutes, m);
+        }
+    }, 1);
+
+}
+
+function timeFormat(time, t) {
+    if ((("0") + t ).length <= 2) {
+        time.innerHTML = "0" + t;
+    }
+
+    else { 
+        time.innerHTML = t;
+    }
+}
 
 
 
@@ -47,6 +85,7 @@ function startGame() {
     cards = game.createCard();
     game.shuffleCards(cards);
     createBoard();
+    chronometer();
 }
 
 
@@ -59,16 +98,16 @@ function createBoard() {
     }
 }
 
-function win (){
+function win() {
     let winScreen = document.querySelector(".winScreen")
-    
+
     winScreen.classList.remove("disappear")
 }
 
-function restart (){
+function restart() {
     let board = document.querySelector(".board")
     let winScreen = document.querySelector(".winScreen")
-    
+
     winScreen.classList.add("disappear")
     board.innerHTML = ""
     startGame()

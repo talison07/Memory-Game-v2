@@ -3,10 +3,25 @@ let game = {
     secondCard: null,
     lockMode: false,
 
+    techs: [
+        "bootstrap",
+        "css",
+        "electron",
+        "firebase",
+        "html",
+        "javascript",
+        "jquery",
+        "mongo",
+        "node",
+        "react"
+    ],
+
+    players: [],
+
     setCard: function (id) {
         let card = this.cards.filter((card) => card.id == id)[0];
 
-        if(this.lockMode){
+        if (this.lockMode) {
             return false
         }
 
@@ -16,7 +31,7 @@ let game = {
             return true
         }
 
-        else if(card!==this.firstCard){
+        else if (card !== this.firstCard) {
             this.secondCard = card;
             this.secondCard.flipped = true;
             this.lockMode = true;
@@ -31,7 +46,7 @@ let game = {
         this.lockMode = false;
     },
 
-    unflipCards : function(){
+    unflipCards: function () {
         this.firstCard.flipped = false;
         this.secondCard.flipped = false;
         this.continueGame();
@@ -42,21 +57,6 @@ let game = {
         return game.firstCard.icon === game.secondCard.icon
 
     },
-
-
-
-    techs: [
-        "bootstrap",
-        "css",
-        "electron",
-        "firebase",
-        "html",
-        "javascript",
-        "jquery",
-        "mongo",
-        "node",
-        "react"
-    ],
 
     cards: null,
 
@@ -105,4 +105,13 @@ let game = {
 
         }
     },
-} 
+
+    orderPodium: function (a, b) {
+        if (a.time > b.time) {
+            return 1
+        }
+        else {
+            return -1
+        }
+    }
+}

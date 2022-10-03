@@ -17,7 +17,7 @@ body {
 *{
     margin: 0px;
     padding: 0px;
-    font-family: "Press Start 2P", sans-serif;
+    
 }
 .card {
     width: 150px;
@@ -75,6 +75,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-family: "Press Start 2P", sans-serif;
 
     transition: all 500ms;
 }
@@ -113,6 +114,7 @@ body {
     border-radius: 10px;
     border: 1.2px solid #000;
     margin-bottom: 20px;
+    font-family: "Press Start 2P", sans-serif;
 
     text-align: center;
 }
@@ -123,30 +125,36 @@ body {
 
     background-color: #222b;
     color: #fff;
-    text-shadow: 4px 2px 0px  #00a3ff;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     position: absolute;
+    gap: 20px;
+    font-family: "Press Start 2P", sans-serif;
 
     transition: all 500ms;
 }
 
 #winMessage{
-    margin-bottom: 20px;
     text-align: center;
+    text-shadow: 4px 2px 0px  #00a3ff;
+    /* position: absolute; */
+    /* top: 20%; */
 }
 
 
-.winScreen button{
+#restart{
     width: 250px;
     height: 50px;
     border-radius: 10px;
     border: none;
     background-color: #00a3ff;
     cursor: pointer;
+    /* position: absolute; */
+    /* bottom: 10%; */
     color: white;
+    font-family: "Press Start 2P", sans-serif;
 
 
     transition: all 500ms;
@@ -166,6 +174,71 @@ body {
     display: grid;
     grid-template: repeat(5, 1fr)/ repeat(4, 1fr);
     gap: 20px;
+}
+
+#border{
+    width: 100vw;
+    height: 100vh;
+    border: 5px solid #b805ff;
+    position: absolute;
+    box-sizing: border-box;
+    z-index: -1;
+}
+
+#trapeze{
+    top: 0px;
+    position: absolute;
+    width: 150px;
+    border-top: 30px solid #8a02c0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+}
+
+
+#timer{
+    width: 84px;
+    display: flex;
+    color: #fff;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 0px;
+}
+
+#leaderBoard{
+    font-family: Arial;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    
+
+}
+
+#leaderBoard h1{
+    background-color: #101c2c;
+    display: inline;
+    padding: 2px 5px;
+    border-radius: 10px;
+    position: absolute;
+    top: -20px;
+}
+
+#podium{
+    
+    width: 300px;
+    min-height: 200px;
+    background-color: grey;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    
+}
+
+#podium p{
+    align-self: center;
 }
 
 @media screen and (max-height:890px){
