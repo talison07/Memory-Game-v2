@@ -38,11 +38,11 @@ function flip(card) {
 
 
 function timeFormat(time, t) {
-    if ((("0") + t ).length <= 2) {
+    if ((("0") + t).length <= 2) {
         time.innerHTML = "0" + t;
     }
 
-    else { 
+    else {
         time.innerHTML = t;
     }
 }
@@ -81,8 +81,16 @@ function restart() {
     let board = document.querySelector(".board")
     let winScreen = document.querySelector(".winScreen")
 
-    winScreen.classList.add("disappear")
-    board.innerHTML = ""
-    
+    let minutes = document.getElementById("minutes");
+    let seconds = document.getElementById("seconds");
+
+    winScreen.classList.add("disappear");
+    board.innerHTML = "";
+    seconds.innerHTML = "00"
+    minutes.innerHTML = "00"
+    startGame();
+
+
+
 }
 

@@ -153,9 +153,9 @@ let chronometer = {
     },
 
     stop: () => {
-        clearInterval(chronometer.timeInterval)
+        clearInterval(chronometer.timeInterval);
     },
 
-
+    
 }
 
