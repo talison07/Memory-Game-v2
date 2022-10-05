@@ -1,3 +1,4 @@
+
 function flip(card) {
     if (game.setCard(card.id)) {
         card.classList.add("flip")
@@ -35,35 +36,6 @@ function flip(card) {
 
 }
 
-function chronometer() {
-    let minutes = document.getElementById("minutes");
-    let seconds = document.getElementById("seconds");
-    let milliseconds = document.getElementById("milliseconds");
-
-    let mm = 0;
-    let s = 0;
-    let m = 0;
-
-    let timeInterval = setInterval(() => {
-        milliseconds.innerHTML++
-
-        if (milliseconds.innerHTML == 99) {
-            mm = 0;
-            timeFormat(milliseconds, mm)
-            s++;
-            timeFormat(seconds, s)
-
-        }
-
-        if (seconds.innerHTML == 59) {
-            s = 0;
-            timeFormat(seconds, s);
-            m++;
-            timeFormat(minutes, m);
-        }
-    }, 1);
-
-}
 
 function timeFormat(time, t) {
     if ((("0") + t ).length <= 2) {
@@ -85,7 +57,7 @@ function startGame() {
     cards = game.createCard();
     game.shuffleCards(cards);
     createBoard();
-    chronometer();
+    chronometer.start();
 }
 
 
@@ -102,6 +74,7 @@ function win() {
     let winScreen = document.querySelector(".winScreen")
 
     winScreen.classList.remove("disappear")
+    chronometer.stop()
 }
 
 function restart() {
@@ -110,6 +83,6 @@ function restart() {
 
     winScreen.classList.add("disappear")
     board.innerHTML = ""
-    startGame()
+    
 }
 

@@ -1,3 +1,4 @@
+"use strict"
 let game = {
     firstCard: null,
     secondCard: null,
@@ -106,6 +107,10 @@ let game = {
         }
     },
 
+
+
+
+
     orderPodium: function (a, b) {
         if (a.time > b.time) {
             return 1
@@ -115,3 +120,42 @@ let game = {
         }
     }
 }
+
+
+let chronometer = {
+
+    timeInterval: "",
+    
+    watch: () => {
+        let minutes = document.getElementById("minutes");
+        let seconds = document.getElementById("seconds");
+
+        
+
+        let s = parseInt(seconds.innerHTML);
+        let m = parseInt(minutes.innerHTML);
+
+        s++;
+        timeFormat(seconds, s);
+
+        if (seconds.innerHTML == 60) {
+            s = 0;
+            timeFormat(seconds, s)
+            m++;
+            timeFormat(minutes, m)
+
+        }
+    },
+
+    start: () => {
+        chronometer.timeInterval = setInterval(chronometer.watch, 1000)
+        
+    },
+
+    stop: () => {
+        clearInterval(chronometer.timeInterval)
+    },
+
+
+}
+
