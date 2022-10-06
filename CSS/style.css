@@ -214,14 +214,6 @@ body {
 
 }
 
-#leaderBoard h1{
-    background-color: #101c2c;
-    display: inline;
-    padding: 2px 5px;
-    border-radius: 10px;
-    position: absolute;
-    top: -20px;
-}
 
 #podium{
     
@@ -241,6 +233,7 @@ body {
     border-radius: 10px;
     width: 100%;
     border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #podium th{
@@ -248,8 +241,9 @@ body {
     color: gray;
 }
 
-#podium tbody{
+.leaderBoard{
     text-align: center;
+    
 }
 
 .rank, .time{
