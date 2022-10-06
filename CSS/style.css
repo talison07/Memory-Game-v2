@@ -227,9 +227,8 @@ body {
     
     width: 300px;
     min-height: 200px;
-    background-color: grey;
     padding: 30px;
-    border-radius: 10px;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -237,9 +236,37 @@ body {
     
 }
 
-#podium p{
-    align-self: center;
+#podium table{
+    background-color:#101c2c;
+    border-radius: 10px;
+    width: 100%;
+    border-collapse: collapse;
 }
+
+#podium th{
+    font-size: 0.7rem;
+    color: gray;
+}
+
+#podium tbody{
+    text-align: center;
+}
+
+.rank, .time{
+    color: #999
+}
+
+#podium tbody tr:nth-child(2n){
+    background-color: #132135;
+}
+
+#podium td{
+    padding: 1rem;
+}
+
+
+
+
 
 @media screen and (max-height:890px){
     .card{

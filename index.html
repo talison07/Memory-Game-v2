@@ -32,7 +32,7 @@
         <img src="./assets/brain.png" alt="">
         <h1>Memory game</h1>
         <input id="inputPlayer" type="text" placeholder="Player">
-        <button id="play" onclick="startGame()">Play</button>
+        <button id="play" onclick="win()">Play</button>
 
     </div>
 
@@ -42,12 +42,37 @@
 
         <div id="leaderBoard">
             <div id="podium">
-                <h1>leaderBoard</h1>
-                <ol type="1">
-                    <p>Talison</p>
-                    <p>Joao</p>
-                    <p>Pedro</p>
-                </ol>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>PLAYER</th>
+                            <th>TIME</th>
+                        </tr>
+                        
+                    </thead>
+                    <tr>
+                        <td class="rank">1</td>
+                        <td class="player">Talison</td>
+                        <td class="time">00:43</td>
+                    </tr>
+
+                    <tr>
+                        <td class="rank">2</td>
+                        <td class="player">Pedro</td>
+                        <td class="time">00:52</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="rank">3</td>
+                        <td class="player">Joao</td>
+                        <td class="time">01:00</td>
+                    </tr>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
             </div>
             
         </div>
