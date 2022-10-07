@@ -180,7 +180,7 @@ let chronometer = {
 
 let players;
 function inputPlayer() {
-    let inputName = document.getElementById("inputName");
+    let inputName = document.querySelector(".inputName");
     let minutes = document.getElementById("minutes").innerHTML;
     let seconds = document.getElementById("seconds").innerHTML;
 
@@ -232,7 +232,7 @@ function inputPlayer() {
 }
 
 function samePlayer(player) {
-    let inputName = document.getElementById("inputName");
+    let inputName = document.querySelector(".inputName");
 
     player.name === inputName.value
 }

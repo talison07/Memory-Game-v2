@@ -1,11 +1,12 @@
-html, body{
+html,
+body {
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
 }
 
 body {
-    
+
     position: relative;
     display: flex;
     justify-content: center;
@@ -14,11 +15,12 @@ body {
     overflow: hidden;
 }
 
-*{
+* {
     margin: 0px;
     padding: 0px;
-    
+
 }
+
 .card {
     width: 150px;
     height: 150px;
@@ -29,7 +31,8 @@ body {
     cursor: pointer;
 }
 
-.cardFront, .cardBack{
+.cardFront,
+.cardBack {
     width: 100%;
     height: 100%;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
@@ -42,12 +45,13 @@ body {
 
     backface-visibility: hidden;
 }
+
 .cardFront {
     background-color: #101c2c;
     transform: rotateY(180deg);
 }
 
-.cardFront img{
+.cardFront img {
     transition: all 500ms;
 }
 
@@ -56,16 +60,16 @@ body {
     font-size: 30px;
 }
 
-.flip{
+.flip {
     transform: rotateY(180deg);
 
 }
 
-.match{
+.match {
     filter: saturate(10%)
 }
 
-.loginScreen{
+.loginScreen {
     background-color: #fff;
     width: 100%;
     height: 100%;
@@ -80,16 +84,16 @@ body {
     transition: all 500ms;
 }
 
-.loginScreen h1{
+.loginScreen h1 {
     margin-bottom: 20px;
     text-align: center;
 }
 
-.loginScreen img{
+.loginScreen img {
     width: 200px;
 }
 
-#play{
+#play {
     width: 200px;
     height: 50px;
     border-radius: 10px;
@@ -98,17 +102,17 @@ body {
     cursor: pointer;
 
     font-family: "Press Start 2P";
-    color:#fff;
+    color: #fff;
 
     transition: all 700ms;
 
 }
 
-#play:hover{
+#play:hover {
     background-color: #925146;
 }
 
-#inputName{
+.inputName {
     width: 250px;
     height: 40px;
     border-radius: 10px;
@@ -117,9 +121,19 @@ body {
     font-family: "Press Start 2P", sans-serif;
 
     text-align: center;
+
 }
 
-.winScreen{
+.error {
+    border-color: red;
+    outline: red;
+}
+
+.error::placeholder {
+    color: red;
+}
+
+.winScreen {
     width: 100%;
     height: 100%;
 
@@ -136,15 +150,15 @@ body {
     transition: all 500ms;
 }
 
-#winMessage{
+#winMessage {
     text-align: center;
-    text-shadow: 4px 2px 0px  #00a3ff;
+    text-shadow: 4px 2px 0px #00a3ff;
     /* position: absolute; */
     /* top: 20%; */
 }
 
 
-#restart{
+#restart {
     width: 250px;
     height: 50px;
     border-radius: 10px;
@@ -160,23 +174,23 @@ body {
     transition: all 500ms;
 }
 
-.winScreen button:hover{
+.winScreen button:hover {
     background-color: #1b304b;
 }
 
 
-.disappear{
+.disappear {
     transform: translateY(-1500px);
 }
 
-.board{
+.board {
     max-width: 700px;
     display: grid;
     grid-template: repeat(5, 1fr)/ repeat(4, 1fr);
     gap: 20px;
 }
 
-#border{
+#border {
     width: 100vw;
     height: 100vh;
     border: 5px solid #b805ff;
@@ -185,7 +199,7 @@ body {
     z-index: -1;
 }
 
-#trapeze{
+#trapeze {
     top: 0px;
     position: absolute;
     width: 150px;
@@ -195,7 +209,7 @@ body {
 }
 
 
-#timer{
+#timer {
     width: 54px;
     display: flex;
     color: #fff;
@@ -204,56 +218,57 @@ body {
     top: 0px;
 }
 
-#leaderBoard{
+#leaderBoard {
     font-family: Arial;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
-    
+
 
 }
 
 
-#podium{
-    
+#podium {
+
     width: 300px;
     min-height: 200px;
     padding: 30px;
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    
+
 }
 
-#podium table{
-    background-color:#101c2c;
+#podium table {
+    background-color: #101c2c;
     border-radius: 10px;
     width: 100%;
     border-collapse: collapse;
-    font-family: Arial, Helvetica, sans-serif;  
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-#podium th{
+#podium th {
     font-size: 0.7rem;
     color: gray;
 }
 
-.leaderBoard{
+.leaderBoard {
     text-align: center;
 }
 
-.rank, .time{
+.rank,
+.time {
     color: #999
 }
 
-#podium tbody tr:nth-child(2n){
+#podium tbody tr:nth-child(2n) {
     background-color: #132135;
 }
 
-#podium td{
+#podium td {
     padding: 1rem;
 }
 
@@ -261,33 +276,34 @@ body {
 
 
 
-@media screen and (max-height:890px){
-    .card{
+@media screen and (max-height:890px) {
+    .card {
         width: 100px;
-        height:100px
+        height: 100px
     }
 
-    .cardBack{
+    .cardBack {
         font-size: 25px;
     }
 }
 
-@media screen and (max-width:600px){
-    .card{
+@media screen and (max-width:600px) {
+    .card {
         width: 70px;
         height: 70px;
     }
 
-    .cardBack, .cardFront{
+    .cardBack,
+    .cardFront {
         border-radius: 15px;
     }
 
-    .cardFront img{
+    .cardFront img {
         width: 50px;
     }
 
-    .cardBack{
-        font-size:15px;
+    .cardBack {
+        font-size: 15px;
     }
 
 }

@@ -51,13 +51,22 @@ function timeFormat(time, t) {
 
 function startGame() {
     let loginScreen = document.querySelector(".loginScreen");
+    let inputName = document.querySelector(".inputName");
+    if(inputName.value.trim() !== ""){
+        inputName.classList.remove("error")
+        loginScreen.classList.add("disappear")
 
-    loginScreen.classList.add("disappear")
+        cards = game.createCard();
+        game.shuffleCards(cards);
+        createBoard();
+        chronometer.start();
 
-    cards = game.createCard();
-    game.shuffleCards(cards);
-    createBoard();
-    chronometer.start();
+    }
+    else{
+        inputName.classList.add("error")
+        inputName.value = ""
+    }
+    
 }
 
 
