@@ -1,4 +1,4 @@
-"use strict"
+// "use strict"
 let game = {
     firstCard: null,
     secondCard: null,
@@ -112,25 +112,41 @@ let game = {
 
 
     orderPodium: function (a, b) {
-        if (a.time > b.time) {
+        if ((a.minutes + a.seconds) > (b.minutes + b.seconds)) {
             return 1
         }
         else {
             return -1
         }
+    },
+
+    i:1,
+
+    createPodium: function (){
+      let ordenedPodium = players.sort(this.orderPodium);
+      let podium = document.querySelector(".leaderBoard");
+
+      
+        podium.innerHTML = ""
+      for(player of ordenedPodium){
+        
+        podium.innerHTML += '<tr><td class="rank">'+this.i+'</td><td class="player">'+player.name+'</td><td class="time">'+player.minutes+":"+player.seconds+'</td></tr> '
+        this.i++;
+      }
     }
 }
+
 
 
 let chronometer = {
 
     timeInterval: "",
-    
+
     watch: () => {
         let minutes = document.getElementById("minutes");
         let seconds = document.getElementById("seconds");
 
-        
+
 
         let s = parseInt(seconds.innerHTML);
         let m = parseInt(minutes.innerHTML);
@@ -149,13 +165,75 @@ let chronometer = {
 
     start: () => {
         chronometer.timeInterval = setInterval(chronometer.watch, 1000)
-        
+
     },
 
     stop: () => {
         clearInterval(chronometer.timeInterval);
     },
 
-    
+
+}
+
+
+
+
+let players;
+function inputPlayer() {
+    let inputName = document.getElementById("inputName");
+    let minutes = document.getElementById("minutes").innerHTML;
+    let seconds = document.getElementById("seconds").innerHTML;
+
+    if (localStorage.getItem("players") !== null) {
+        players = JSON.parse(localStorage.getItem("players"));
+        // console.log("localStorage preenchido")
+    }
+    else {
+        players = [];
+        // console.log("localStorage vazio")
+
+    }
+
+    let player = players.filter(player => player.name === inputName.value)[0];
+
+    if (player !== undefined && players.length !== 0) {
+        // console.log("Já existe")
+        // console.log(players)
+
+
+        
+
+        if (player.minutes >= minutes) {
+            player.minutes = minutes;
+            // console.log("minutos menor")
+
+            if (player.seconds > seconds) {
+                player.seconds = seconds;
+                localStorage.setItem("players", JSON.stringify(players));;
+                // console.log("segundos menor")
+            }
+
+        }
+
+    }
+
+    else {
+        let newPlayer = { name: inputName.value, minutes: minutes, seconds: seconds }
+
+        players.push(newPlayer);
+        localStorage.setItem("players", JSON.stringify(players));
+        // console.log("ñ existe");
+        // console.log("Jogador adicionado");
+    }
+
+
+
+    console.log(players)
+}
+
+function samePlayer(player) {
+    let inputName = document.getElementById("inputName");
+
+    player.name === inputName.value
 }
 

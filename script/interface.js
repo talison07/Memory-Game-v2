@@ -74,12 +74,15 @@ function win() {
     let winScreen = document.querySelector(".winScreen")
 
     winScreen.classList.remove("disappear")
-    chronometer.stop()
+    chronometer.stop();
+    inputPlayer();
+    game.createPodium();    
 }
 
 function restart() {
     let board = document.querySelector(".board")
     let winScreen = document.querySelector(".winScreen")
+    let loginScreen = document.querySelector(".loginScreen");
 
     let minutes = document.getElementById("minutes");
     let seconds = document.getElementById("seconds");
@@ -89,6 +92,7 @@ function restart() {
     seconds.innerHTML = "00"
     minutes.innerHTML = "00"
     startGame();
+    
 
 
 

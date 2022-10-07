@@ -108,7 +108,7 @@ body {
     background-color: #925146;
 }
 
-#inputPlayer{
+#inputName{
     width: 250px;
     height: 40px;
     border-radius: 10px;
@@ -233,7 +233,7 @@ body {
     border-radius: 10px;
     width: 100%;
     border-collapse: collapse;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;  
 }
 
 #podium th{
@@ -243,7 +243,6 @@ body {
 
 .leaderBoard{
     text-align: center;
-    
 }
 
 .rank, .time{
