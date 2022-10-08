@@ -231,9 +231,3 @@ function inputPlayer() {
     console.log(players)
 }
 
-function samePlayer(player) {
-    let inputName = document.querySelector(".inputName");
-
-    player.name === inputName.value
-}
-
