@@ -228,6 +228,6 @@ function inputPlayer() {
 
 
 
-    console.log(players)
+    // console.log(players)
 }
 
