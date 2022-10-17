@@ -20,19 +20,23 @@ let game = {
     players: [],
 
     setCard: function (id) {
+        //this function gets the card clicked
         let card = this.cards.filter((card) => card.id == id)[0];
+        //here is the card clicked
 
         if (this.lockMode) {
             return false
         }
 
         if (!this.firstCard) {
+            //if "firstCard" is null (empty)... I input the current card on "firstCard"
             this.firstCard = card;
             this.firstCard.flipped = true;
             return true
         }
 
         else if (card !== this.firstCard) {
+            //if the current card is different of "firstCard" it means the card is the second card clicked
             this.secondCard = card;
             this.secondCard.flipped = true;
             this.lockMode = true;
@@ -42,12 +46,14 @@ let game = {
     },
 
     continueGame: function () {
+        //this function resets the clicked cards
         this.firstCard = null;
         this.secondCard = null;
         this.lockMode = false;
     },
 
     unflipCards: function () {
+        //this function unflip cards
         this.firstCard.flipped = false;
         this.secondCard.flipped = false;
         this.continueGame();
@@ -55,6 +61,7 @@ let game = {
 
 
     checkMatch: function () {
+        //this function check if there is a match between the cards
         return game.firstCard.icon === game.secondCard.icon
 
     },
@@ -62,6 +69,7 @@ let game = {
     cards: null,
 
     createCard: function () {
+        //this function create the cards and your pairs
         this.cards = []
 
         for (let tech of this.techs) {
@@ -75,6 +83,7 @@ let game = {
     },
 
     createPair: function (tech) {
+        //this funciton create a pair of cards
         return [{
             id: this.createId(tech),
             icon: tech,
@@ -90,11 +99,13 @@ let game = {
 
 
     createId: function (tech) {
+        //this function create a random id
         return tech + parseInt(Math.random() * 1000)
     },
 
 
     shuffleCards: function () {
+        //this function shuffle the cards
         let currentIndex = this.cards.length;
         let randomIndex = 0;
 
@@ -112,6 +123,7 @@ let game = {
 
 
     orderPodium: function (a, b) {
+        // this function sorts the players according to theirs times
         if ((a.minutes + a.seconds) > (b.minutes + b.seconds)) {
             return 1
         }
@@ -120,20 +132,9 @@ let game = {
         }
     },
 
-    i:1,
 
-    createPodium: function (){
-      let ordenedPodium = players.sort(this.orderPodium);
-      let podium = document.querySelector(".leaderBoard");
 
-      
-        podium.innerHTML = ""
-      for(player of ordenedPodium){
-        
-        podium.innerHTML += '<tr><td class="rank">'+this.i+'</td><td class="player">'+player.name+'</td><td class="time">'+player.minutes+":"+player.seconds+'</td></tr> '
-        this.i++;
-      }
-    }
+   
 }
 
 
@@ -143,6 +144,7 @@ let chronometer = {
     timeInterval: "",
 
     watch: () => {
+        //this function is the chronometer
         let minutes = document.getElementById("minutes");
         let seconds = document.getElementById("seconds");
 
@@ -164,12 +166,14 @@ let chronometer = {
     },
 
     start: () => {
+        //this function starts the chronometer
         chronometer.timeInterval = setInterval(chronometer.watch, 1000)
-
     },
 
     stop: () => {
+        //this function stop the chronometer
         clearInterval(chronometer.timeInterval);
+
     },
 
 
@@ -186,31 +190,34 @@ function inputPlayer() {
 
     if (localStorage.getItem("players") !== null) {
         players = JSON.parse(localStorage.getItem("players"));
-        // console.log("localStorage preenchido")
+        // if localStorage filled
     }
     else {
         players = [];
-        // console.log("localStorage vazio")
+        // if localStorage unfilled
 
     }
 
     let player = players.filter(player => player.name === inputName.value)[0];
+    //Here is the current player
 
     if (player !== undefined && players.length !== 0) {
-        // console.log("Já existe")
-        // console.log(players)
-
-
+        // check if the player already exists
         
 
+
+
+
         if (player.minutes >= minutes) {
+            // check if the current player minutes are lower
             player.minutes = minutes;
-            // console.log("minutos menor")
+            
 
             if (player.seconds > seconds) {
+                // check if the current player seconds are lower
                 player.seconds = seconds;
                 localStorage.setItem("players", JSON.stringify(players));;
-                // console.log("segundos menor")
+                
             }
 
         }
@@ -218,16 +225,12 @@ function inputPlayer() {
     }
 
     else {
+        //if the current player don't exists... Create a new player
         let newPlayer = { name: inputName.value, minutes: minutes, seconds: seconds }
 
         players.push(newPlayer);
         localStorage.setItem("players", JSON.stringify(players));
-        // console.log("ñ existe");
-        // console.log("Jogador adicionado");
+        
     }
-
-
-
-    // console.log(players)
 }
 
