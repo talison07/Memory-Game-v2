@@ -207,16 +207,13 @@ export async function inputPlayer() {
         
         if (player.minutes >= minutes) {
             // check if the current player minutes are lower
-            await updatePlayer(player, minutes, seconds);
+            await updatePlayerMinutes(player, minutes);
             console.log("minutos menor")
             
             if (player.seconds >= seconds) {
                 // check if the current player seconds are lower
                 console.log("segundos menor");
-                await updatePlayer(player, minutes, seconds);
-                
-                
-                
+                await updatePlayerSeconds(player, seconds);
                 
             }
 
@@ -240,7 +237,7 @@ export async function inputPlayer() {
 }
 
 
-import { snapshotPlayers, updatePlayer, addPlayer} from "./firebase.js"
+import { snapshotPlayers, updatePlayerMinutes, updatePlayerSeconds, addPlayer} from "./firebase.js"
 import {timeFormat } from "./interface.js";
 
 

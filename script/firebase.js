@@ -39,19 +39,34 @@ onSnapshot(c, collection => {
 );
 
 
-export async function updatePlayer(player, minutes, seconds) {
+export async function updatePlayerMinutes(player, minutes) {
 
   snapshot.forEach(async (document) => {
 
     if (document.data().name === player.name) {
       await updateDoc(doc(db, "Players", document.id), {
-        "minutes": minutes, "seconds": seconds
+        "minutes": minutes
       })
       console.log(document.id)
     }
 
   })
 }
+
+export async function updatePlayerSeconds(player, seconds) {
+
+  snapshot.forEach(async (document) => {
+
+    if (document.data().name === player.name) {
+      await updateDoc(doc(db, "Players", document.id), {
+      "seconds": seconds
+      })
+      console.log(document.id)
+    }
+
+  })
+}
+
 
 export async function addPlayer(player) {
   addDoc(c, player)
