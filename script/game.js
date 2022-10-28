@@ -1,5 +1,5 @@
 // "use strict"
-let game = {
+export let game = {
     firstCard: null,
     secondCard: null,
     lockMode: false,
@@ -16,8 +16,6 @@ let game = {
         "node",
         "react"
     ],
-
-    players: [],
 
     setCard: function (id) {
         //this function gets the card clicked
@@ -139,7 +137,7 @@ let game = {
 
 
 
-let chronometer = {
+export let chronometer = {
 
     timeInterval: "",
 
@@ -180,43 +178,45 @@ let chronometer = {
 }
 
 
-
-
-let players;
-function inputPlayer() {
+export async function inputPlayer() {
     let inputName = document.querySelector(".inputName");
     let minutes = document.getElementById("minutes").innerHTML;
     let seconds = document.getElementById("seconds").innerHTML;
 
-    if (localStorage.getItem("players") !== null) {
-        players = JSON.parse(localStorage.getItem("players"));
+    
+
+    if (snapshotPlayers.length !== 0) {
+        console.log(snapshotPlayers);
         // if localStorage filled
+        console.log("db preenchido")
     }
     else {
-        players = [];
         // if localStorage unfilled
+        console.log("db vazio")
 
     }
 
-    let player = players.filter(player => player.name === inputName.value)[0];
+    let player = snapshotPlayers.filter(player => player.name === inputName.value)[0];
     //Here is the current player
+    console.log(player)
+    
 
-    if (player !== undefined && players.length !== 0) {
+    if (player !== undefined){
         // check if the player already exists
+        console.log("Jogador já existe")
         
-
-
-
-
         if (player.minutes >= minutes) {
             // check if the current player minutes are lower
-            player.minutes = minutes;
+            await updatePlayer(player, minutes, seconds);
+            console.log("minutos menor")
             
-
-            if (player.seconds > seconds) {
+            if (player.seconds >= seconds) {
                 // check if the current player seconds are lower
-                player.seconds = seconds;
-                localStorage.setItem("players", JSON.stringify(players));;
+                console.log("segundos menor");
+                await updatePlayer(player, minutes, seconds);
+                
+                
+                
                 
             }
 
@@ -226,11 +226,22 @@ function inputPlayer() {
 
     else {
         //if the current player don't exists... Create a new player
+        console.log("jogador não existe")
         let newPlayer = { name: inputName.value, minutes: minutes, seconds: seconds }
 
-        players.push(newPlayer);
-        localStorage.setItem("players", JSON.stringify(players));
+        addPlayer(newPlayer);
+        
+        console.log("jogador criado")
+        
+
+        
         
     }
 }
+
+
+import { snapshotPlayers, updatePlayer, addPlayer} from "./firebase.js"
+import {timeFormat } from "./interface.js";
+
+
 

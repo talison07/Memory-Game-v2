@@ -1,8 +1,8 @@
 
-function flip(card) {
-    if (game.setCard(card.id)) {
+function flip() {
+    if (game.setCard(this.id)) {
         // Here i flip the clicked card
-        card.classList.add("flip")
+        this.classList.add("flip")
     };
     if (game.secondCard) {
         //if any card has been inserted in "secondCard", check for match
@@ -41,7 +41,10 @@ function flip(card) {
 }
 
 
-function timeFormat(time, t) {
+
+
+
+export function timeFormat(time, t) {
     //this function format the time to "01, 02, 03 ...09, 10"
     if ((("0") + t).length <= 2) {
         time.innerHTML = "0" + t;
@@ -54,40 +57,46 @@ function timeFormat(time, t) {
 
 
 
-function startGame() {
+ function startGame() {
     //this function create the cards and shuffles them
     let loginScreen = document.querySelector(".loginScreen");
     let inputName = document.querySelector(".inputName");
+    
     if (inputName.value.trim() !== "") {
         //check if the input of name is not empty
         inputName.classList.remove("error")
         loginScreen.classList.add("disappear")
 
-        cards = game.createCard();
-        game.shuffleCards(cards);
+        game.cards = game.createCard();
+        game.shuffleCards(game.cards);
         createBoard();
+        let gameCards = document.querySelectorAll(".card");
+        gameCards.forEach(card => card.addEventListener("click", flip));
         chronometer.start();
-
     }
     else {
         inputName.classList.add("error")
         inputName.value = ""
     }
 
-}
+};
+
+let playButton = document.getElementById("play");
+
+playButton.addEventListener("click", startGame)
 
 
 
 function createBoard() {
     //this function add the cards on the board in html
     let board = document.querySelector(".board")
-    for (let card of cards) {
-        board.innerHTML += '<div class="card" onclick="flip(this)" id="' + card.id + '" data-icon="' + card.icon + '"><div class="cardFront"><img src="./assets/' + card.icon + '.png" alt=""></div><div class="cardBack">&lt/&gt</div></div>'
+    for (let card of game.cards) {
+        board.innerHTML += '<div class="card" id="' + card.id + '" data-icon="' + card.icon + '"><div class="cardFront"><img src="./assets/' + card.icon + '.png" alt=""></div><div class="cardBack">&lt/&gt</div></div>'
 
     }
 }
 
-function win() {
+ function win() {
     //this function push the win screen and stop the chronometer
     let winScreen = document.querySelector(".winScreen");
     let playerTime = document.getElementById("playerTime");
@@ -97,8 +106,9 @@ function win() {
     winScreen.classList.remove("disappear")
     chronometer.stop();
     inputPlayer();
+    console.log(snapshotPlayers);
     createPodium();
-    playerTime.innerHTML = "Your time: " + minutes+ ":" + seconds
+    playerTime.innerHTML = "Your time: " + minutes + ":" + seconds
 }
 
 function restart() {
@@ -116,21 +126,30 @@ function restart() {
     minutes.innerHTML = "00"
     startGame();
 
-
-
-
 }
+
+let restartButton = document.getElementById("restart");
+restartButton.addEventListener("click", restart)
+
 
 function createPodium() {
     //this function create the ordened podium
-    let ordenedPodium = players.sort(game.orderPodium);
-    let podium = document.querySelector(".leaderBoard");
-    let i = 1;
-
-    podium.innerHTML = ""
-    for (player of ordenedPodium) {
-
-        podium.innerHTML += '<tr><td class="rank">' + i + '</td><td class="player">' + player.name + '</td><td class="time">' + player.minutes + ":" + player.seconds + '</td></tr> '
-        i++;
+      setTimeout(()=>{
+        let ordenedPodium = snapshotPlayers.sort(game.orderPodium);
+        let podium = document.querySelector(".leaderBoard");
+        let i = 1;
+        podium.innerHTML = "";
+        ordenedPodium.forEach ((player)=>{
+    
+            podium.innerHTML += '<tr><td class="rank">' + i + '</td><td class="player">' + player.name + '</td><td class="time">' + player.minutes + ":" + player.seconds + '</td></tr> '
+            i++;
+        })
+        console.log("podium criado")
+      }, 50)  
     }
-}
+
+    
+
+
+import { snapshotPlayers } from "./firebase.js";
+import { game, chronometer, inputPlayer } from "./game.js";
